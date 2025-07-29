@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hassan Civic Reporter</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.11.0/dist/geosearch.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div id="loader-overlay">
+        <div class="loader"></div>
+    </div>
+
+    <header>
+        <h1>Hassan Civic Issue Reporter 📍</h1>
+    </header>
+    
+    <main>
+        <div id="map"></div>
+        <form id="report-form">
+            <div id="gamification-panel">
+                <h3>🏆 Civic Champion</h3>
+                <p>Your Score: <span id="user-score">0</span></p>
+                <div id="badges-panel">
+                    <h4>Your Badges:</h4>
+                    <div id="badges-container"></div>
+                </div>
+            </div>
+
+            <h2>Report a New Issue</h2>
+            <p id="form-instruction">Click the map to select a location, or use the button below.</p>
+            
+            <label for="issue-type">Issue Type:</label>
+            <select id="issue-type" name="issue_type" required>
+                <option value="" disabled selected>Select an issue</option>
+                <option value="Pothole">Pothole</option>
+                <option value="Garbage Dump">Garbage Dump</option>
+                <option value="Broken Streetlight">Broken Streetlight</option>
+                <option value="Water Leakage">Water Leakage</option>
+                <option value="Blocked Drain">Blocked Drain</option>
+                <option value="Fallen Tree">Fallen Tree</option>
+                <option value="Illegal Parking">Illegal Parking</option>
+                <option value="Stray Animals">Stray Animals</option>
+                <option value="Others">Others</option>
+            </select>
+            
+            <label for="description">Description (optional):</label>
+            <textarea id="description" name="description" rows="3"></textarea>
+
+            <label for="image">Upload Photo (optional):</label>
+            <div class="file-input-wrapper">
+                <input type="file" id="image" name="image" accept="image/*" class="file-input">
+                <label for="image" class="file-label">Choose File</label>
+                <span id="file-name">No file chosen</span>
+            </div>
+            
+            <button type="submit" id="submit-btn" disabled>Select a location to report</button>
+            <button type="button" id="find-me-btn" class="btn-secondary">Use My Current Location</button>
+        </form>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-geosearch@3.11.0/dist/geosearch.umd.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
